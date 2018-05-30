@@ -16,6 +16,7 @@
 #' @description Simulates from the posterior distribution of the intensity, lambda.
 #'
 #' @import mvtnorm
+#' @import stats
 #'
 #' @export
 

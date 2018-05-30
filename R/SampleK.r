@@ -16,9 +16,14 @@
 #'
 #' @description Simulates from the posterior distribution of the carrying capacity parameter, K.
 #'
+#' @import stats
+#'
 #' @export
 
 Sample_K <- function(tau, j, m, nT, r, lambda, K, coords, N, h_K, h_lambda, alpha_K, beta_K){
+
+  longitude <- coords$longitude
+  latitude <- coords$latitude
 
   Kstar <- rnorm(1, K[j-1], h_K)
 #  cat("K = ", K[j-1], "  Kstar = ", Kstar, "\n")

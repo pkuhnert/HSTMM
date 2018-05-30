@@ -11,6 +11,10 @@
 #' @param N true number of organisms (m x nT)
 #' @param acceptR acceptance rates of parameters for M-H step
 #' @param Hparams hyper-parameters for prior probability distributions
+#' @param prior_lambda prior for lambda (mu_lambda, Sigma_lambda)
+#' @param prior_tau prior for dispersal parameter, tau
+#' @param prior_K prior for carrying capacity, K
+#' @param prior_r prior for growth rate, r
 #'
 #' @description Uses the M-H algorithm to implement a BHM S-T model for invasions
 #'
@@ -19,13 +23,13 @@
 #' @references Hooten, M.B., Wikle, C.K., Dorazio, R.M. and Royle, J.A. (2007) Hierarchical Spatiotemporal Matrix
 #' Models for Characterizing Invasions, Biometrics, 63, 558-567.
 #'
-#'
+#' @import stats
 #'
 #' @export
 
 
-HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparams, prior_lambda, prior_tau,
-                     prior_K, prior_r){
+HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparams,
+                     prior_lambda, prior_tau, prior_K, prior_r){
 
 
   #----------------------- Extraction ------------------------#

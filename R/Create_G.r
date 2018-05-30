@@ -7,6 +7,9 @@
 #' @param t time point
 #' @param plot (Default: FALSE)
 #'
+#' @import graphics
+#' @import grDevices
+#'
 #' @description Computes the growth matrix, G. This represents a diagonal
 #' matrix indexed by t.
 

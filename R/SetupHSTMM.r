@@ -2,11 +2,17 @@
 #'
 #' @param nT number of time steps
 #' @param niter number of MCMC iterations
-#' @param matrix of longitude and latitude co-ordinates
+#' @param coords matrix of longitude and latitude co-ordinates
 #' @param m number of spatial locations
-#' @param tune tuning parameters for MH step. A value is listed for each type of parameter
+#' @param tune tuning parameters for MH step. A value is listed for each type of parameter.
+#' @param prior_lambda prior for lambda
+#' @param prior_tau prior for tau
+#' @param prior_K prior for K
+#' @param prior_r prior for r
+#' @param initialV initial values
 #'
 #' @import mvtnorm
+#' @import stats
 #'
 #' @export
 #'
@@ -24,6 +30,8 @@ SetupHSTMM <- function(nT = 10, niter = 100, coords, m = nrow(coords),
                        initialV = list(K = 150, r = 0.3)){
 
 
+  longitude <- coords$longitude
+  latitude <- coords$latitude
 
   # hyper-parameters
   mu_lambda <- rep(prior_lambda$lambda_m, m)

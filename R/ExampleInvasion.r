@@ -1,18 +1,25 @@
 #' Example Invasion Script
 #'
+#' @param m number of spatial locations
+#' @param nT number of time points
+#' @param niter number of iterations
+#' @param tune tuning parameters
+#'
 #'
 #' @export
 
 
 
-ExampleInvasion <- function(m = 6, nT = 10, niter = 100){
+ExampleInvasion <- function(m = 6, nT = 10, niter = 100,
+                            tune = list(h_lambda = 0.1, h_tau = 0.3, h_K = 20, h_r = 0.1)){
 
   # Setup
   longitude <- seq(40, 50, length = m)
   latitude <- seq(20, 30, length = m)
 
   coords <- data.frame(longitude = longitude, latitude = latitude)
-  invasion_su <- SetupHSTMM(nT = 10, niter = 100, coords, m = m, tune = list(h_lambda = 0.1, h_tau = 0.3, h_K = 20, h_r = 0.1),
+  invasion_su <- SetupHSTMM(nT = nT, niter = niter, coords, m = m,
+                            tune = tune,
                          prior_lambda = list(lambda_m = log(15), lambda_sig = log(1.1)),
                          prior_tau = list(tau_m = log(2), tau_sig = log(1.1)),
                          prior_K = list(alpha = 40, beta = 50),

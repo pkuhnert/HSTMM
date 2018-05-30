@@ -16,6 +16,8 @@
 #'
 #' @description Simulates from the posterior distribution of the growth rate, r.
 #'
+#' @import stats
+#'
 #' @export
 
 

@@ -17,6 +17,7 @@
 #' @description Simulates from the posterior distribution of the dispersal parameter, tau.
 #'
 #' @import mvtnorm
+#' @import stats
 #'
 #' @export
 

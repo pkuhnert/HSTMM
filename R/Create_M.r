@@ -6,6 +6,10 @@
 #' @param tau dispersal parameter (vector of length m)
 #' @param plot (Default: FALSE)
 #'
+#' @importFrom stats "dist"
+#' @import graphics
+#' @import grDevices
+#'
 #' @description Computes the movement matrix, M, based on a spatially varying Gaussian kernel
 
 Create_M <- function(m, longitude, latitude, tau, plot = FALSE){

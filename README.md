@@ -7,7 +7,7 @@
 You can install a development version of HSTMM from GitHub by doing the following (with the appropriate auth_token)
 
     # install.packages("devtools")
-    devtools::install_github(repo = "pkuhnert/Vizumap", auth_token = "auth_token")
+    devtools::install_github(repo = "pkuhnert/HSTMM", auth_token = "auth_token")
 
 Author
 -------

@@ -65,7 +65,6 @@ Sample_tau <- function(tau, j, m, nT, r, lambda, K, coords, N, h_tau, h_lambda, 
  pstar_tau <- top-bot
 
  if(pstar_tau > runif(1,0,1)){
-   cat("New tau\n")
    tau[[j]] <- taustar
    accept_tau <- 1
  }

@@ -60,7 +60,6 @@ Sample_lambda <- function(m, nT, r, j, lambda, K, coords, tau, N,
 
 
   if(pstar_lambda > runif(1,0,1)){
-    cat("New lambda\n")
     lambda[[j]] <- lambdastar
     N[[j]] <- cbind(rep(NA, m), Nstar)
     accept_lambda <- 1

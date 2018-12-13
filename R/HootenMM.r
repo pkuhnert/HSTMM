@@ -26,6 +26,7 @@
 #' Models for Characterizing Invasions, Biometrics, 63, 558-567.
 #'
 #' @import stats
+#' @importFrom svMisc progress
 #'
 #' @export
 
@@ -61,6 +62,7 @@ HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparam
   #----------------------- Initialisation ------------------------#
   # initial values for the process at j=1
   j <- 1
+  progress(j, progress.bar = TRUE)
   G <- vector("list", length = nT)
   G[[1]] <- Create_G(m = m, r = r[j], lambda = lambda[[j]], K = K[j], t = 1, plot = FALSE)
   M <- Create_M(m = m, longitude = longitude, latitude = latitude, tau = tau[[j]], plot = FALSE)
@@ -78,8 +80,9 @@ HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparam
 
   #----------------------- Sampling ------------------------#
 
+  cat("MCMC Run \n")
   for(j in 2:niter){
-    cat("Iter: ", j, "\n")
+    progress(j, progress.bar = TRUE)
 
     # Sample lambda
     val_lambda <- Sample_lambda(m = m, nT = nT, r = r, j = j, lambda = lambda, K = K, coords = coords, tau = tau, N = N,
@@ -117,10 +120,13 @@ HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparam
     r <- val_r$r
     accept_r[j-1] <- val_r$accept_r
 
+    if(j == niter) cat("Done!\n")
+
   }
 
   AR <- list(accept_lambda = accept_lambda, accept_tau = accept_tau,
              accept_K = accept_K, accept_r = accept_r, accept_N = accept_N)
+
 
   list(N = N, lambda = lambda, tau = tau, K = K, r = r, AR = AR)
 

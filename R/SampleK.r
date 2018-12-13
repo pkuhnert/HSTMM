@@ -26,7 +26,6 @@ Sample_K <- function(tau, j, m, nT, r, lambda, K, coords, N, h_K, h_lambda, alph
   latitude <- coords$latitude
 
   Kstar <- rnorm(1, K[j-1], h_K)
-#  cat("K = ", K[j-1], "  Kstar = ", Kstar, "\n")
 
   lambdastar <- Llambdastar  <- matrix(NA, nrow = m, ncol = nT)
   Llambdastar[,1] <- rnorm(m, log(lambda[[j]][,1]), h_lambda)
@@ -59,7 +58,6 @@ Sample_K <- function(tau, j, m, nT, r, lambda, K, coords, N, h_K, h_lambda, alph
   pstar_K <- top - bot
 
   if(pstar_K > runif(1,0,1)){
-    cat("New K\n")
     K[j] <- Kstar
     accept_K <- 1
   }

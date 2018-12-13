@@ -1,6 +1,6 @@
 #' RunScenario
 #'
-#' @description Scenario to run Hooten Model
+#' @description Just a simple scenario to run Hooten Model
 #'
 #' @param niter Number of iterations
 #' @param nT Number of time points
@@ -11,11 +11,14 @@
 #' @import RColorBrewer
 #' @import gridExtra
 #'
+#'
 #' @export
 
 
 RunScenario <- function(niter = 30000, nburn = 10000, nT = 10){
 
+
+  if(nburn > niter) stop("No. of burn-ins needs to be less than number of iterations.\n")
 
   # create dummy locations
   longitude <- seq(40, 50, length = 5)
@@ -64,7 +67,7 @@ RunScenario <- function(niter = 30000, nburn = 10000, nT = 10){
   for(i in (startMC+1):stopMC){
     check <- (i/2) - trunc(i/2)
     if(check == 0){
-      sumlambda <- sumlambda + Hres$lambda[[i]]
+      sumlambda <- sumlambda + Hout$lambda[[i]]
       count <- count + 1
     }
 

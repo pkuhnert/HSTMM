@@ -62,7 +62,6 @@ Sample_r <- function(tau, j, m, nT, r, lambda, K, coords, N, h_r, h_lambda, mu_r
   pstar_r <- top - bot
 
   if(pstar_r > runif(1,0,1)){
-    cat("New r\n")
     r[j] <- rstar
     accept_r <- 1
   }

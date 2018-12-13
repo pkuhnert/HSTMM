@@ -33,8 +33,6 @@ Sample_N <- function(n, N, lambda, h_n, alpha_theta, beta_theta, j, m, nT){
   pstar_N <- top - bot
 
   if(pstar_N > runif(1,0,1)){
-    cat("New N\n")
-
     N[[j]] <- Nstar
     accept_N <- 1
   }

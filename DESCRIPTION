@@ -17,7 +17,8 @@ Imports:
     grid,
     gridExtra,
     raster,
-    RColorBrewer
+    RColorBrewer,
+    svMisc
 License: GPL-2
 Encoding: UTF-8
 LazyLoad: TRUE

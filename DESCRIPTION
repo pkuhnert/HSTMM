@@ -7,14 +7,20 @@ Maintainer: Petra Kuhnert <Petra.Kuhnert@data61.csiro.au>
 Description: This package implements the work of Hooten et al. (2007) for
     characterizing invasions. 
 Depends:
-    R (>= 3.3.3)
+    R (>= 3.5.0)
 Imports:
     mvtnorm,
     stats,
+    ggplot2,
     grDevices,
-    graphics
+    graphics,
+    grid,
+    gridExtra,
+    raster,
+    RColorBrewer
 License: GPL-2
 Encoding: UTF-8
 LazyLoad: TRUE
 LazyData: TRUE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
+

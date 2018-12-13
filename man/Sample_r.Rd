@@ -4,7 +4,8 @@
 \alias{Sample_r}
 \title{Sample Growth Rate, r}
 \usage{
-Sample_r(tau, j, m, nT, r, lambda, K, coords, N, h_r, h_lambda, mu_r, sig2_r)
+Sample_r(tau, j, m, nT, r, lambda, K, coords, N, h_r, h_lambda, mu_r,
+  sig2_r)
 }
 \arguments{
 \item{tau}{dispersal parameter (vector of length m)}

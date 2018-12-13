@@ -15,6 +15,8 @@
 #' @param prior_tau prior for dispersal parameter, tau
 #' @param prior_K prior for carrying capacity, K
 #' @param prior_r prior for growth rate, r
+#' @param prior_theta prior for theta
+#' @param sample_n sample_n
 #'
 #' @description Uses the M-H algorithm to implement a BHM S-T model for invasions
 #'
@@ -29,7 +31,7 @@
 
 
 HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparams,
-                     prior_lambda, prior_tau, prior_K, prior_r){
+                     prior_lambda, prior_tau, prior_K, prior_r, prior_theta, sample_n){
 
 
   #----------------------- Extraction ------------------------#
@@ -49,10 +51,11 @@ HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparam
   h_tau <- Hparams$h_tau
   h_K <- Hparams$h_K
   h_r <- Hparams$h_r
+  h_n <- Hparams$h_n
 
 
 
-  accept_lambda <- accept_tau <- accept_K <- accept_r <- NULL
+  accept_lambda <- accept_tau <- accept_K <- accept_r <- accept_N <- NULL
 
 
   #----------------------- Initialisation ------------------------#
@@ -66,6 +69,7 @@ HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparam
   # run forward process model to obtain initial values of the process (#4 in Biometrics paper)
   for(t in 2:(nT+1)){
     lambda[[j]][,t] <- M %*% G[[t-1]] %*% lambda[[j]][,t-1]
+
     N[[j]][,t] <- rpois(m, lambda[[j]][,t])
     G[[t]] <- Create_G(m = m, r = r[j], lambda = lambda[[j]], K = K[j], t = t, plot = FALSE)
 
@@ -80,9 +84,17 @@ HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparam
     # Sample lambda
     val_lambda <- Sample_lambda(m = m, nT = nT, r = r, j = j, lambda = lambda, K = K, coords = coords, tau = tau, N = N,
                                 mu_lambda = prior_lambda$mu_lambda, sigma_lambda = prior_lambda$Sigma_lambda, h_lambda = h_lambda)
-    N <- val_lambda$N
+   # N <- val_lambda$N
     lambda <- val_lambda$lambda
     accept_lambda[j-1] <- val_lambda$accept_lambda
+
+    # Sample N
+    val_N <- Sample_N(n = sample_n, N = N, lambda = lambda, h_n = h_n,
+                      alpha_theta = prior_theta$alpha_theta,
+                      beta_theta = prior_theta$beta_theta, j = j, m = m, nT = nT)
+    N <- val_N$N
+    accept_N[j-1] <- val_N$accept_N
+
 
 
     # sample tau
@@ -107,7 +119,8 @@ HootenMM <- function(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparam
 
   }
 
-  AR <- list(accept_lambda = accept_lambda, accept_tau = accept_tau, accept_K = accept_K, accept_r = accept_r)
+  AR <- list(accept_lambda = accept_lambda, accept_tau = accept_tau,
+             accept_K = accept_K, accept_r = accept_r, accept_N = accept_N)
 
   list(N = N, lambda = lambda, tau = tau, K = K, r = r, AR = AR)
 

@@ -4,8 +4,11 @@
 \alias{ExampleInvasion}
 \title{Example Invasion Script}
 \usage{
-ExampleInvasion(m = 6, nT = 10, niter = 100, tune = list(h_lambda = 0.1,
-  h_tau = 0.3, h_K = 20, h_r = 0.1))
+ExampleInvasion(m = 6, nT = 10, niter = 100, coords,
+  prior_lambda = prior_lambda, prior_tau = prior_tau,
+  prior_K = prior_K, prior_r = prior_r, prior_theta,
+  initialV = initialV, tune = list(h_lambda = 0.1, h_tau = 0.3, h_K =
+  20, h_r = 0.1, h_N = 1), sample_n)
 }
 \arguments{
 \item{m}{number of spatial locations}
@@ -14,7 +17,23 @@ ExampleInvasion(m = 6, nT = 10, niter = 100, tune = list(h_lambda = 0.1,
 
 \item{niter}{number of iterations}
 
+\item{coords}{coordinates}
+
+\item{prior_lambda}{prior for lambda}
+
+\item{prior_tau}{prior for tau}
+
+\item{prior_K}{prior for K}
+
+\item{prior_r}{prior for r}
+
+\item{prior_theta}{prior for theta}
+
+\item{initialV}{initialV}
+
 \item{tune}{tuning parameters}
+
+\item{sample_n}{sample_n}
 }
 \description{
 Example Invasion Script

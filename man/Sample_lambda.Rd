@@ -4,8 +4,8 @@
 \alias{Sample_lambda}
 \title{Sample the intensity, lambda}
 \usage{
-Sample_lambda(m, nT, r, j, lambda, K, coords, tau, N, mu_lambda, sigma_lambda,
-  h_lambda)
+Sample_lambda(m, nT, r, j, lambda, K, coords, tau, N, mu_lambda,
+  sigma_lambda, h_lambda)
 }
 \arguments{
 \item{m}{number of spatial locations}

@@ -3,28 +3,39 @@
 #' @param m number of spatial locations
 #' @param nT number of time points
 #' @param niter number of iterations
+#' @param coords coordinates
+#' @param prior_lambda prior for lambda
+#' @param prior_tau prior for tau
+#' @param prior_K prior for K
+#' @param prior_r prior for r
+#' @param prior_theta prior for theta
+#' @param initialV initialV
 #' @param tune tuning parameters
+#' @param sample_n sample_n
 #'
 #'
 #' @export
 
 
 
-ExampleInvasion <- function(m = 6, nT = 10, niter = 100,
-                            tune = list(h_lambda = 0.1, h_tau = 0.3, h_K = 20, h_r = 0.1)){
+ExampleInvasion <- function(m = 6, nT = 10, niter = 100, coords,
+                            prior_lambda = prior_lambda, prior_tau = prior_tau,
+                            prior_K = prior_K, prior_r = prior_r, prior_theta,
+                            initialV = initialV,
+                            tune = list(h_lambda = 0.1, h_tau = 0.3, h_K = 20, h_r = 0.1,
+                                        h_N = 1),
+                            sample_n){
 
   # Setup
-  longitude <- seq(40, 50, length = m)
-  latitude <- seq(20, 30, length = m)
 
-  coords <- data.frame(longitude = longitude, latitude = latitude)
   invasion_su <- SetupHSTMM(nT = nT, niter = niter, coords, m = m,
                             tune = tune,
-                         prior_lambda = list(lambda_m = log(15), lambda_sig = log(1.1)),
-                         prior_tau = list(tau_m = log(2), tau_sig = log(1.1)),
-                         prior_K = list(alpha = 40, beta = 50),
-                         prior_r = list(mu = 0.5, sig2 = 0.25),
-                         initialV = list(K = 150, r = 0.3))
+                         prior_lambda = prior_lambda,
+                         prior_tau = prior_tau,
+                         prior_K = prior_K,
+                         prior_r = prior_r,
+                         prior_theta = prior_theta,
+                         initialV = initialV)
 
   acceptR <- list(accept_lambda = NULL, accept_tau = NULL, accept_K = NULL, accept_r = NULL)
 
@@ -34,7 +45,8 @@ ExampleInvasion <- function(m = 6, nT = 10, niter = 100,
            K = invasion_su$K, coords = coords, tau = invasion_su$tau, N = invasion_su$N,
            prior_lambda = invasion_su$prior_lambda, prior_tau = invasion_su$prior_tau,
            prior_K = invasion_su$prior_K, prior_r = invasion_su$prior_r,
-           acceptR = acceptR, Hparams = invasion_su$tune)
+           prior_theta = invasion_su$prior_theta,
+           acceptR = acceptR, Hparams = invasion_su$tune, sample_n = sample_n)
 
 
   MM_out

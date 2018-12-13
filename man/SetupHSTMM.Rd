@@ -5,11 +5,12 @@
 \title{Set up the HSTMM}
 \usage{
 SetupHSTMM(nT = 10, niter = 100, coords, m = nrow(coords),
-  tune = list(h_lambda = 0.1, h_tau = 0.3, h_K = 20, h_r = 0.1),
+  tune = list(h_lambda = 0.1, h_tau = 0.3, h_K = 20, h_r = 0.1, h_N = 1),
   prior_lambda = list(lambda_m = log(15), lambda_sig = log(1.1)),
-  prior_tau = list(tau_m = log(2), tau_sig = log(1.1)), prior_K = list(alpha
-  = 40, beta = 50), prior_r = list(mu = 0.5, sig2 = 0.25), initialV = list(K
-  = 150, r = 0.3))
+  prior_tau = list(tau_m = log(2), tau_sig = log(1.1)),
+  prior_K = list(alpha = 40, beta = 50), prior_r = list(mu = 0.5, sig2
+  = 0.25), prior_theta = list(alpha_theta = 1, beta_theta = 1),
+  initialV = list(K = 150, r = 0.3))
 }
 \arguments{
 \item{nT}{number of time steps}
@@ -29,6 +30,8 @@ SetupHSTMM(nT = 10, niter = 100, coords, m = nrow(coords),
 \item{prior_K}{prior for K}
 
 \item{prior_r}{prior for r}
+
+\item{prior_theta}{prior for theta}
 
 \item{initialV}{initial values}
 }

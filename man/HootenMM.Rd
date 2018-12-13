@@ -5,7 +5,7 @@
 \title{Hooten Space-Time Matrix Model}
 \usage{
 HootenMM(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparams,
-  prior_lambda, prior_tau, prior_K, prior_r)
+  prior_lambda, prior_tau, prior_K, prior_r, prior_theta, sample_n)
 }
 \arguments{
 \item{niter}{number of iterations}
@@ -37,6 +37,10 @@ HootenMM(niter, m, nT, r, lambda, K, coords, tau, N, acceptR, Hparams,
 \item{prior_K}{prior for carrying capacity, K}
 
 \item{prior_r}{prior for growth rate, r}
+
+\item{prior_theta}{prior for theta}
+
+\item{sample_n}{sample_n}
 }
 \description{
 Uses the M-H algorithm to implement a BHM S-T model for invasions

@@ -4,7 +4,8 @@
 \alias{Sample_K}
 \title{Sample the Carrying Capacity, K}
 \usage{
-Sample_K(tau, j, m, nT, r, lambda, K, coords, N, h_K, h_lambda, alpha_K, beta_K)
+Sample_K(tau, j, m, nT, r, lambda, K, coords, N, h_K, h_lambda, alpha_K,
+  beta_K)
 }
 \arguments{
 \item{tau}{dispersal parameter (vector of length m)}
